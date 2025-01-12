@@ -2,12 +2,22 @@
 
 import { useState } from "react";
 
+interface UnsplashImage {
+  urls: {
+    small: string;
+    full: string;
+  };
+  alt_description: string | null;
+  user: {
+    name: string;
+  };
+}
 
 const unsplash_access_key = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY!;
 
 export default function Page() {
 
-  const [imagedata, setImageData] = useState(null);
+  const [imagedata, setImageData] = useState<UnsplashImage | null>(null);
   const [error, setError] = useState(null);
 
   async function fetchRandomPhoto() {
